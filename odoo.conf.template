@@ -12,3 +12,4 @@ proxy_mode = True
 x_sendfile = True
 xmlrpc_port = 10000
 http_port = 10000
+db_template = template0
