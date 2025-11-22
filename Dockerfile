@@ -1,3 +1,16 @@
 FROM odoo:17.0
-COPY odoo.conf /etc/odoo/
-CMD ["odoo", "--config=/etc/odoo/odoo.conf", "--http-interface=0.0.0.0", "--http-port=10000"]
+
+USER root
+# Install envsubst and postgresql-client
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        postgresql-client \
+        gettext-base \
+        && rm -rf /var/lib/apt/lists/*
+
+# Copy template and startup script
+COPY odoo.conf.template /etc/odoo/
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
