@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-# Wait for database to be ready
+echo "Waiting for database at ${DB_HOST}:${DB_PORT}..."
 while ! pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USER; do
-    echo "Waiting for database..."
+    echo "Database not ready yet. Waiting..."
     sleep 2
 done
 
-# Start Odoo
+echo "Database is ready! Starting Odoo..."
 exec "$@"
