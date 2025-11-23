@@ -2,10 +2,10 @@
 addons_path = /mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons
 data_dir = /var/lib/odoo
 admin_passwd = farisjewelry123
-db_host = ${DB_HOST}
+db_host = ${PGHOST}
 db_port = 5432
-db_user = ${DB_USER}
-db_password = ${DB_PASSWORD}
+db_user = ${PGUSER}
+db_password = ${PGPASSWORD}
 db_name = faris-jewelrydb
 without_demo = all
 proxy_mode = True
