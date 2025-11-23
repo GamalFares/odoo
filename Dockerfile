@@ -5,12 +5,8 @@ USER root
 RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
 USER odoo
 
-# Create odoo configuration
-RUN echo '[options]\n\
-data_dir = /var/lib/odoo\n\
-admin_passwd = farisjewelry123\n\
-without_demo = all\n\
-proxy_mode = True\n\
-' > /etc/odoo/odoo.conf
+# Create a robust startup script
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-CMD ["odoo", "--config=/etc/odoo/odoo.conf", "--http-interface=0.0.0.0", "--http-port=8069"]
+CMD ["/start.sh"]
