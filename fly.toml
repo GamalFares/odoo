@@ -1,0 +1,23 @@
+app = "faris-jewelry-odoo"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[services]]
+  internal_port = 8069
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[[mounts]]
+  source = "odoo_data"
+  destination = "/var/lib/odoo"
