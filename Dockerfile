@@ -1,16 +1,16 @@
 FROM odoo:17.0
 
+# Install postgresql-client for health checks
 USER root
-# Install envsubst and postgresql-client
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        postgresql-client \
-        gettext-base \
-        && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+USER odoo
 
-# Copy template and startup script
-COPY odoo.conf.template /etc/odoo/
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+# Create odoo configuration
+RUN echo '[options]\n\
+data_dir = /var/lib/odoo\n\
+admin_passwd = farisjewelry123\n\
+without_demo = all\n\
+proxy_mode = True\n\
+' > /etc/odoo/odoo.conf
 
-CMD ["/start.sh"]
+CMD ["odoo", "--config=/etc/odoo/odoo.conf", "--http-interface=0.0.0.0", "--http-port=8069"]
