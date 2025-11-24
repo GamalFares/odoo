@@ -6,21 +6,7 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     envVars:
-      - key: DB_HOST
-        fromDatabase:
-          name: faris-jewelrydb
-          property: host
-      - key: DB_PORT
-        value: 5432
-      - key: DB_USER
-        fromDatabase:
-          name: faris-jewelrydb
-          property: user
-      - key: DB_PASSWORD
-        fromDatabase:
-          name: faris-jewelrydb
-          property: password
-      - key: DB_NAME
-        value: faris_jewelry
-      - key: ADMIN_PASSWORD
-        generateValue: true
+      - key: PORT
+        value: 10000
+      # SECURITY: Set these in Render Dashboard Environment tab
+      # DO NOT put credentials here in production
