@@ -8,4 +8,13 @@ services:
     envVars:
       - key: PORT
         value: 10000
-    # SECURITY: Set credentials in Render Dashboard Environment tab
+      # SECURITY: Set these in Render Dashboard Environment tab
+      - key: DB_HOST
+        value: "dpg-d4hjebv5r7bs73btmp50-a"
+      - key: DB_PORT
+        value: 5432
+      - key: DB_USER
+        value: "faris_jewelrydb_p59l_user"
+      - key: DB_NAME
+        value: "faris_jewelrydb_p59l"
+      # DO NOT put passwords here - set in Render Dashboard
