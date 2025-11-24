@@ -8,5 +8,4 @@ services:
     envVars:
       - key: PORT
         value: 10000
-      # SECURITY: Set these in Render Dashboard Environment tab
-      # DO NOT put credentials here in production
+    # SECURITY: Set credentials in Render Dashboard Environment tab
