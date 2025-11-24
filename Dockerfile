@@ -1,11 +1,18 @@
 FROM odoo:17.0
 
-# Install postgresql-client for health checks
+# Security: Use non-root user and install security updates
 USER root
-RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
-USER odoo
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y postgresql-client && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
 
-# Create a robust startup script
+# Security: Create dedicated user
+RUN useradd -m -d /opt/odoo -U -r -s /bin/bash odoo-user
+USER odoo-user
+
+# Copy secure startup script
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
