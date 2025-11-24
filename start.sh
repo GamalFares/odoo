@@ -42,7 +42,7 @@ exec odoo \
   --db_user="$DB_USER" \
   --db_password="$DB_PASSWORD" \
   --database="$DB_NAME" \
-  --admin-passwd="$ADMIN_PASSWORD" \
+  --admin-password="$ADMIN_PASSWORD" \
   --without-demo=all \
   --http-interface=0.0.0.0 \
   --http-port="$PORT" \
